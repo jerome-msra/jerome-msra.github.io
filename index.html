@@ -228,7 +228,7 @@
 				var loader = new THREE.PLYLoader( manager );
 				loader.load( 'eight.ply', function ( geometry ) {
 
-					//console.log(geometry.uvs.length);
+					console.log(geometry.uvs.length);
 					//paramMesh = genParamMesh(geometry, material);
 
 					geometry.computeFaceNormals();
@@ -239,8 +239,6 @@
 					
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
-
-					mesh.geometry.normalize();
 
 					scene.add(mesh);	
 					
@@ -261,27 +259,27 @@
 
 			}
 
-			// function genParamMesh(geometry, material){
-			// 	var paramGeometry = new THREE.Geometry();
-			// 	paramGeometry.faces = geometry.faces.slice();
-			// 	paramGeometry.faceVertexUvs = geometry.faceVertexUvs.slice();
-			// 	paramGeometry.colors = geometry.colors.slice();
-			// 	paramGeometry.uvs = geometry.uvs.slice();
+			function genParamMesh(geometry, material){
+				var paramGeometry = new THREE.Geometry();
+				paramGeometry.faces = geometry.faces.slice();
+				paramGeometry.faceVertexUvs = geometry.faceVertexUvs.slice();
+				paramGeometry.colors = geometry.colors.slice();
+				paramGeometry.uvs = geometry.uvs.slice();
 								
-			// 	for(var i=0; i<geometry.uvs.length; ++i){
-			// 		uv2 = geometry.uvs[i];
-			// 		paramGeometry.vertices.push(new THREE.Vector3(uv2.x,uv2.y,0));
-			// 	}
-			// 	paramGeometry.computeBoundingSphere();
-			// 	paramGeometry.computeFaceNormals();
-			// 	paramGeometry.computeVertexNormals();
-			// 	var center = paramGeometry.boundingSphere.center;
-			// 	paramGeometry.translate( -center.x, -center.y, -center.z );
-			// 	paramGeometry.rotateZ(Math.PI);
+				for(var i=0; i<geometry.uvs.length; ++i){
+					uv2 = geometry.uvs[i];
+					paramGeometry.vertices.push(new THREE.Vector3(uv2.x,uv2.y,0));
+				}
+				paramGeometry.computeBoundingSphere();
+				paramGeometry.computeFaceNormals();
+				paramGeometry.computeVertexNormals();
+				var center = paramGeometry.boundingSphere.center;
+				paramGeometry.translate( -center.x, -center.y, -center.z );
+				paramGeometry.rotateZ(Math.PI);
 
-			// 	var paramMesh = new THREE.Mesh(paramGeometry, material);
-			// 	return paramMesh;
-			// }
+				var paramMesh = new THREE.Mesh(paramGeometry, material);
+				return paramMesh;
+			}
 
 			function onKeyDown(e) {
 				var key = String.fromCharCode(e.keyCode);
