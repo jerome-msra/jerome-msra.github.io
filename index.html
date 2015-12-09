@@ -226,7 +226,7 @@
 
 				
 				var loader = new THREE.PLYLoader( manager );
-				loader.load( 'eight.ply', function ( geometry ) {
+				loader.load( 'sophie.ply', function ( geometry ) {
 
 					
 					//paramMesh = genParamMesh(geometry, material);
@@ -241,7 +241,7 @@
 					mesh.receiveShadow = true;
 
 					mesh.geometry.normalize();
-					
+
 					scene.add(mesh);	
 					
 				}, onProgress, onError );
