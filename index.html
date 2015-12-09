@@ -228,7 +228,7 @@
 				var loader = new THREE.PLYLoader( manager );
 				loader.load( 'eight.ply', function ( geometry ) {
 
-					log(geometry.uvs.length);
+					console.log(geometry.uvs.length);
 					//paramMesh = genParamMesh(geometry, material);
 
 					geometry.computeFaceNormals();
