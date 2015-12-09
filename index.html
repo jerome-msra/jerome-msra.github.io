@@ -234,12 +234,14 @@
 					geometry.computeFaceNormals();
 					geometry.computeVertexNormals();
 					geometry.normalize();
-					
+
 					mesh = new THREE.Mesh( geometry, material );
 					
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
 
+					mesh.geometry.normalize();
+					
 					scene.add(mesh);	
 					
 				}, onProgress, onError );
