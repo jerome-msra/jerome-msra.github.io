@@ -233,7 +233,8 @@
 
 					geometry.computeFaceNormals();
 					geometry.computeVertexNormals();
-										
+					geometry.normalize();
+					
 					mesh = new THREE.Mesh( geometry, material );
 					
 					mesh.castShadow = true;
