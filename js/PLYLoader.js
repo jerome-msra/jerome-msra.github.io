@@ -291,6 +291,8 @@ THREE.PLYLoader.prototype = {
 
 		}
 
+		geometry.uvs = [];
+
 		var lines = body.split( '\n' );
 		var currentElement = 0;
 		var currentElementCount = 0;
@@ -367,6 +369,13 @@ THREE.PLYLoader.prototype = {
 
 			}
 
+			if ( 'texture_u' in element && 'texture_v' in element) {
+			
+				var uv = new THREE.Vector2(element.texture_u, element.texture_v);				
+				geometry.uvs.push( uv );
+
+			}
+
 		} else if ( elementName === "face" ) {
 
 			var vertex_indices = element.vertex_indices;
@@ -376,6 +385,9 @@ THREE.PLYLoader.prototype = {
 				geometry.faces.push(
 					new THREE.Face3( vertex_indices[ 0 ], vertex_indices[ 1 ], vertex_indices[ 2 ] )
 				);
+				var uvs = geometry.uvs;
+				faceVertexUvs = [uvs[vertex_indices[0]],uvs[vertex_indices[1]],uvs[vertex_indices[2]]];
+				geometry.faceVertexUvs[0].push(faceVertexUvs);
 
 			} else if ( vertex_indices.length === 4 ) {
 
@@ -383,6 +395,11 @@ THREE.PLYLoader.prototype = {
 					new THREE.Face3( vertex_indices[ 0 ], vertex_indices[ 1 ], vertex_indices[ 3 ] ),
 					new THREE.Face3( vertex_indices[ 1 ], vertex_indices[ 2 ], vertex_indices[ 3 ] )
 				);
+				var uvs = geometry.uvs;
+				faceVertexUvs = [uvs[vertex_indices[0]],uvs[vertex_indices[1]],uvs[vertex_indices[2]]];
+				geometry.faceVertexUvs[0].push(faceVertexUvs);
+				faceVertexUvs = [uvs[vertex_indices[1]],uvs[vertex_indices[2]],uvs[vertex_indices[3]]];
+				geometry.faceVertexUvs[0].push(faceVertexUvs);
 
 			}
 

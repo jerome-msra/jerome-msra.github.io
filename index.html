@@ -173,6 +173,20 @@
 				scene.add( directionalLight2 );
 				var pointLight = new THREE.PointLight( 0xbad1e5 );
 				pointLight.position.set( 0, 100, 100 );
+				// scene.add( pointLight );
+
+				// var lights = [];
+				// lights[0] = new THREE.PointLight( 0xffffff, 1, 0 );
+				// lights[1] = new THREE.PointLight( 0xffffff, 1, 0 );
+				// lights[2] = new THREE.PointLight( 0xffffff, 1, 0 );
+				
+				// lights[0].position.set( 0, 0, 200 );
+				// lights[1].position.set( 100, 200, 100 );
+				// lights[2].position.set( -100, -200, -100 );
+
+				// scene.add( lights[0] );
+				// scene.add( lights[1] );
+				// scene.add( lights[2] );
 								
 								
 				// texture
@@ -335,6 +349,17 @@
 							scene.children[i] = mesh;
 							camera = camera3d;
 							controls = controls3d;
+							// child = mesh;
+							// child.geometry.vertices = vertices;															
+							// child.geometry.computeFaceNormals();
+  					// 		child.geometry.computeVertexNormals();							
+							// child.geometry.verticesNeedUpdate = true;
+							// child.geometry.normalsNeedUpdate = true;
+							// child.geometry.dynamic = true;
+							// child.geometry._bufferGeometry.attributes.position.needsUpdate = true;
+							// child.geometry._bufferGeometry.attributes.normal.needsUpdate = true;
+							// camera.position.z = 250;
+							// camera.updateProjectionMatrix();
 						}
 					}
 				}
@@ -346,6 +371,17 @@
 							scene.children[i] = paramMesh;
 							camera = camera2d;
 							controls = controls2d;
+							// child = paramMesh;
+							// child.geometry.vertices = uvs;	
+							// child.geometry.computeFaceNormals();
+  					// 		child.geometry.computeVertexNormals();							
+							// child.geometry.verticesNeedUpdate = true;
+							// child.geometry.normalsNeedUpdate = true;
+							// child.geometry.dynamic = true;
+							// child.geometry._bufferGeometry.attributes.position.needsUpdate = true;
+							// child.geometry._bufferGeometry.attributes.normal.needsUpdate = true;
+							// camera.position.z = 2;
+							// camera.updateProjectionMatrix();
 						}
 					}
 				}
