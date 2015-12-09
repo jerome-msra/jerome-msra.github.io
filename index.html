@@ -230,7 +230,7 @@
 
 					console.log(geometry.uvs.length);
 					//paramMesh = genParamMesh(geometry, material);
-
+					geometry.uvsNeedUpdate = false;
 					geometry.computeFaceNormals();
 					geometry.computeVertexNormals();
 					geometry.normalize();
