@@ -299,8 +299,9 @@
 							if(child.material.wireframe){
 								child.material.vertexColors = THREE.FaceColors;
 								child.material.shading = THREE.SmoothShading
-								smoothMode = true;
+								smoothMode = false;
 								flatMode = false;
+								wireframeMode = true;
 							}
 							else{
 								child.material.vertexColors = THREE.VertexColors;
@@ -315,7 +316,8 @@
 						if(child instanceof THREE.Mesh){				
 							child.material.shading = THREE.SmoothShading;	
 							smoothMode = true;
-							flatMode = false;						
+							flatMode = false;		
+							wireframeMode = false;				
 							child.material.needsUpdate = true;						
 						}
 					}
@@ -328,13 +330,14 @@
 								child.material.shading = THREE.FlatShading;
 								flatMode = true;
 								smoothMode = false;
+								wireframeMode = false;
 								child.material.needsUpdate = true;
 							}
 							
 						}
 					}
 				}
-				if(key === 't' || key === 'T' ) {// smooth shading
+				if(key === 't' || key === 'T' ) {// show texture
 					for(var i=0; i< scene.children.length; ++i){
 						var child = scene.children[i];
 						if(child instanceof THREE.Mesh){
