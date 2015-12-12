@@ -308,9 +308,9 @@
 							// }
 							child.material.wireframe = true;
 							child.material.vertexColors = THREE.VertexColors;
-								smoothMode = false;
-								flatMode = false;
-								wireframeMode = true;
+							smoothMode = false;
+							flatMode = false;
+							wireframeMode = true;
 							child.material.needsUpdate = true;
 						}
 					}
@@ -319,6 +319,7 @@
 					for(var i=0; i< scene.children.length; ++i){
 						var child = scene.children[i];
 						if(child instanceof THREE.Mesh){				
+							child.material.wireframe = false;
 							child.material.shading = THREE.SmoothShading;	
 							smoothMode = true;
 							flatMode = false;		
@@ -333,6 +334,7 @@
 						if(child instanceof THREE.Mesh){							
 							if(!child.material.wireframe){
 								child.material.shading = THREE.FlatShading;
+								child.material.wireframe = false;
 								flatMode = true;
 								smoothMode = false;
 								wireframeMode = false;
