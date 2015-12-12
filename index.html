@@ -229,6 +229,15 @@
 				loader.load( 'eight.ply', function ( geometry ) {
 
 					console.log(geometry.uvs.length);
+					if (geometry.uvs.length > 0) {
+						paramMesh = genParamMesh(geometry, material);	
+						document.getElementById("2dview").disabled = false;
+						document.getElementById("texture").disabled = false;
+					}
+					else{
+						document.getElementById("2dview").disabled = true;
+						document.getElementById("texture").disabled = true;	
+					}
 					//paramMesh = genParamMesh(geometry, material);
 					geometry.uvsNeedUpdate = false;
 					geometry.computeFaceNormals();
