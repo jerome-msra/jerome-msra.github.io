@@ -101,22 +101,20 @@
 
 			if(smoothMode){
 				$$('smooth').className = 'btn btn-primary';
+				$$('flat').className = 'btn';
+				$$('wireframe').className = 'btn';
 			}
-			else{
+			else if (flatMode) {
 				$$('smooth').className = 'btn';	
-			}
-			if(flatMode){
 				$$('flat').className = 'btn btn-primary';
-			}
-			else{
-				$$('flat').className = 'btn';	
-			}
-			if(wireframeMode){
-				$$('wireframe').className = 'btn btn-primary';
-			}
-			else{
 				$$('wireframe').className = 'btn';	
 			}
+			else if(wireframeMode) {
+				$$('wireframe').className = 'btn btn-primary';
+				$$('flat').className = 'btn';
+				$$('smooth').className = 'btn';	
+			}
+			
 			if(textureMode){
 				$$('texture').className = 'btn btn-primary';
 			}
