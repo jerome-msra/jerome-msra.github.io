@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Jerome's WebGL Viewer</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			*{
-				border: none;
-			}
-			body {
-				font-family: Monospace;
-				background-color: #000;
-				color: #fff;
-				margin: 0;
-				overflow: hidden;				
-			}
-			.btn { 
-				color: #333;
-			    background-color: #fff;
-			    border-color: #ccc;
-				
-				font-weight: bold; 
-				cursor: pointer;
-				margin: 0 auto; 
-				width: 100%;
-				
-    			display: inline-block;
-				padding: 6px 12px;
-				margin-bottom: 0;
-				font-size: 14px;
-				font-weight: 400;
-				line-height: 1.42857143;
-				text-align: center;
-				white-space: nowrap;
-				vertical-align: middle;
-				touch-action: manipulation;
-			    cursor: pointer;
-			    -webkit-user-select: none;
-			    border: 1px solid #ccc;
-			    border-right: none;
-   				border-radius: 1px;
-   				z-index: 10;
-			}
-			.btn-primary {
-				color: #fff;
-				background-color: #337ab7;
-    			border-color: #2e6da4;
-			}
-			.control {
-				display: flex;
-				display: -webkit-box;
-				display: -moz-flex;
-				display: -ms-flexbox;
-				display: -webkit-flex;
-				text-align: justify;
-				justify-content: space-between;
-				width: 100%; 
-				position:absolute; 
-				bottom:0;				 
-				text-align:center;
-				margin: 0 auto;
-			}
-			.control:first-child{
-				border-left: none;
-			}
-		</style>
-	</head>
+<head>
+	<title>Jerome's WebGL Viewer</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		*{
+			border: none;
+		}
+		body {
+			font-family: Monospace;
+			background-color: #000;
+			color: #fff;
+			margin: 0;
+			overflow: hidden;				
+		}
+		.btn { 
+			color: #333;
+			background-color: #fff;
+			border-color: #ccc;
 
-	<body style="width:100%">		
-		<div class="control">
-			<button type="button" onclick="handleClick('s')" id="smooth" class="btn btn-primary">Smooth</button>
-			<button type="button" onclick="handleClick('f')" id="flat" class="btn">Flat</button>
-			<button type="button" onclick="handleClick('w')" id="wireframe" class="btn">Wireframe</button>
-			<button type="button" onclick="handleClick('g')" id="3dview" class="btn btn-primary">3D View</button>
-			<button type="button" onclick="handleClick('p')" id="2dview" class="btn">2D View</button>
-			<button type="button" onclick="handleClick('t')" id="texture" class="btn">Texture</button>
-		</div>
-		<script>
+			font-weight: bold; 
+			cursor: pointer;
+			margin: 0 auto; 
+			width: 100%;
+
+			display: inline-block;
+			padding: 6px 12px;
+			margin-bottom: 0;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 1.42857143;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			touch-action: manipulation;
+			cursor: pointer;
+			-webkit-user-select: none;
+			border: 1px solid #ccc;
+			border-right: none;
+			border-radius: 1px;
+			z-index: 10;
+		}
+		.btn-primary {
+			color: #fff;
+			background-color: #337ab7;
+			border-color: #2e6da4;
+		}
+		.control {
+			display: flex;
+			display: -webkit-box;
+			display: -moz-flex;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			text-align: justify;
+			justify-content: space-between;
+			width: 100%; 
+			position:absolute; 
+			bottom:0;				 
+			text-align:center;
+			margin: 0 auto;
+		}
+		.control:first-child{
+			border-left: none;
+		}
+	</style>
+</head>
+
+<body style="width:100%">		
+	<div class="control">
+		<button type="button" onclick="handleClick('s')" id="smooth" class="btn btn-primary">Smooth</button>
+		<button type="button" onclick="handleClick('f')" id="flat" class="btn">Flat</button>
+		<button type="button" onclick="handleClick('w')" id="wireframe" class="btn">Wireframe</button>
+		<button type="button" onclick="handleClick('g')" id="3dview" class="btn btn-primary">3D View</button>
+		<button type="button" onclick="handleClick('p')" id="2dview" class="btn">2D View</button>
+		<button type="button" onclick="handleClick('t')" id="texture" class="btn">Texture</button>
+	</div>
+	<script>
 		var smoothMode = true;
 		var flatMode = false;
 		var wireframeMode = false;
@@ -122,55 +122,55 @@
 				$$('texture').className = 'btn';	
 			}
 		}
-		</script>
-		<script src="js/three.min.js"></script>		
-		<script src="js/OrbitControls.js"></script>		
-		<script src="js/PLYLoader.js"></script>		
+	</script>
+	<script src="js/three.min.js"></script>		
+	<script src="js/OrbitControls.js"></script>		
+	<script src="js/PLYLoader.js"></script>		
 
-		<script>
+	<script>
 
-			var container;
-			var camera, camera3d, camera2d, scene, renderer;
-			var controls, controls3d, controls2d;
-			
-			var texture;
+		var container;
+		var camera, camera3d, camera2d, scene, renderer;
+		var controls, controls3d, controls2d;
 
-			var mesh, paramMesh;
+		var texture;
 
-			init();
-			animate();
+		var mesh, paramMesh;
+
+		init();
+		animate();
 
 
-			function init() {
+		function init() {
 
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+			container = document.createElement( 'div' );
+			document.body.appendChild( container );
 
-				camera3d = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.001, 200 );
-				camera3d.position.z = 5;
+			camera3d = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.001, 200 );
+			camera3d.position.z = 5;
 
-				camera2d = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera2d.position.z = 2;
-				
-				controls3d = new THREE.OrbitControls( camera3d );
-				controls2d = new THREE.OrbitControls( camera2d );
+			camera2d = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+			camera2d.position.z = 2;
 
-				camera = camera3d;
-				controls = controls3d;
+			controls3d = new THREE.OrbitControls( camera3d );
+			controls2d = new THREE.OrbitControls( camera2d );
 
-				scene = new THREE.Scene();
+			camera = camera3d;
+			controls = controls3d;
 
-				var ambient = new THREE.AmbientLight( 0xa9a9a9 );
-				scene.add( ambient );
+			scene = new THREE.Scene();
 
-				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-				directionalLight.position.set( 0, 0, 100 );
-				scene.add( directionalLight );
-				var directionalLight2 = new THREE.DirectionalLight( 0xbad1e5 );
-				directionalLight2.position.set( 0, 0, -500 );
-				scene.add( directionalLight2 );
-				var pointLight = new THREE.PointLight( 0xbad1e5 );
-				pointLight.position.set( 0, 100, 100 );
+			var ambient = new THREE.AmbientLight( 0xa9a9a9 );
+			scene.add( ambient );
+
+			var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+			directionalLight.position.set( 0, 0, 100 );
+			scene.add( directionalLight );
+			var directionalLight2 = new THREE.DirectionalLight( 0xbad1e5 );
+			directionalLight2.position.set( 0, 0, -500 );
+			scene.add( directionalLight2 );
+			var pointLight = new THREE.PointLight( 0xbad1e5 );
+			pointLight.position.set( 0, 100, 100 );
 				// scene.add( pointLight );
 
 				// var lights = [];
@@ -185,8 +185,8 @@
 				// scene.add( lights[0] );
 				// scene.add( lights[1] );
 				// scene.add( lights[2] );
-								
-								
+
+
 				// texture
 
 				var manager = new THREE.LoadingManager();
@@ -224,7 +224,7 @@
 
 				
 				var loader = new THREE.PLYLoader( manager );
-				loader.load( 'eight.ply', function ( geometry ) {
+				loader.load( 'mesh/eight.ply', function ( geometry ) {
 
 					console.log(geometry.uvs.length);
 					if (geometry.uvs.length > 0) {
@@ -272,7 +272,7 @@
 				paramGeometry.faceVertexUvs = geometry.faceVertexUvs.slice();
 				paramGeometry.colors = geometry.colors.slice();
 				paramGeometry.uvs = geometry.uvs.slice();
-								
+
 				for(var i=0; i<geometry.uvs.length; ++i){
 					uv2 = geometry.uvs[i];
 					paramGeometry.vertices.push(new THREE.Vector3(uv2.x,uv2.y,0));
@@ -332,14 +332,12 @@
 					for(var i=0; i< scene.children.length; ++i){
 						var child = scene.children[i];
 						if(child instanceof THREE.Mesh){							
-							// if(!child.material.wireframe){
-								child.material.shading = THREE.FlatShading;
-								child.material.wireframe = false;
-								flatMode = true;
-								smoothMode = false;
-								wireframeMode = false;
-								child.material.needsUpdate = true;
-							// }
+							child.material.shading = THREE.FlatShading;
+							child.material.wireframe = false;
+							flatMode = true;
+							smoothMode = false;
+							wireframeMode = false;
+							child.material.needsUpdate = true;
 							
 						}
 					}
@@ -367,17 +365,6 @@
 							scene.children[i] = mesh;
 							camera = camera3d;
 							controls = controls3d;
-							// child = mesh;
-							// child.geometry.vertices = vertices;															
-							// child.geometry.computeFaceNormals();
-  					// 		child.geometry.computeVertexNormals();							
-							// child.geometry.verticesNeedUpdate = true;
-							// child.geometry.normalsNeedUpdate = true;
-							// child.geometry.dynamic = true;
-							// child.geometry._bufferGeometry.attributes.position.needsUpdate = true;
-							// child.geometry._bufferGeometry.attributes.normal.needsUpdate = true;
-							// camera.position.z = 250;
-							// camera.updateProjectionMatrix();
 						}
 					}
 				}
@@ -435,4 +422,4 @@
 		</script>
 
 	</body>
-</html>
+	</html>
