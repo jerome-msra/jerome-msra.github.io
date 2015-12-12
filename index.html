@@ -294,18 +294,18 @@
 					for(var i=0; i< scene.children.length; ++i){
 						var child = scene.children[i];
 						if(child instanceof THREE.Mesh){
-							child.material.wireframe = !child.material.wireframe;
-							wireframeMode = child.material.wireframe;					
-							if(child.material.wireframe){
-								child.material.vertexColors = THREE.FaceColors;
-								child.material.shading = THREE.SmoothShading
-								smoothMode = false;
-								flatMode = false;
-								wireframeMode = true;
-							}
-							else{
-								child.material.vertexColors = THREE.VertexColors;
-							}
+							// child.material.wireframe = !child.material.wireframe;
+							// wireframeMode = child.material.wireframe;					
+							// if(child.material.wireframe){
+							// 	child.material.vertexColors = THREE.FaceColors;
+							// 	child.material.shading = THREE.SmoothShading
+							// 	smoothMode = false;
+							// 	flatMode = false;
+							// 	wireframeMode = true;
+							// }
+							// else{
+							// 	child.material.vertexColors = THREE.VertexColors;
+							// }
 								smoothMode = false;
 								flatMode = false;
 								wireframeMode = true;
