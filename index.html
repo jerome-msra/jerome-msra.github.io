@@ -332,14 +332,14 @@
 					for(var i=0; i< scene.children.length; ++i){
 						var child = scene.children[i];
 						if(child instanceof THREE.Mesh){							
-							if(!child.material.wireframe){
+							// if(!child.material.wireframe){
 								child.material.shading = THREE.FlatShading;
 								child.material.wireframe = false;
 								flatMode = true;
 								smoothMode = false;
 								wireframeMode = false;
 								child.material.needsUpdate = true;
-							}
+							// }
 							
 						}
 					}
