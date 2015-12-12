@@ -99,18 +99,18 @@
 				$$('3dview').className = 'btn';	
 			}
 
-			// if(smoothMode){
-			// 	$$('smooth').className = 'btn btn-primary';
-			// }
-			// else{
-			// 	$$('smooth').className = 'btn';	
-			// }
-			// if(flatMode){
-			// 	$$('flat').className = 'btn btn-primary';
-			// }
-			// else{
-			// 	$$('flat').className = 'btn';	
-			// }
+			if(smoothMode){
+				$$('smooth').className = 'btn btn-primary';
+			}
+			else{
+				$$('smooth').className = 'btn';	
+			}
+			if(flatMode){
+				$$('flat').className = 'btn btn-primary';
+			}
+			else{
+				$$('flat').className = 'btn';	
+			}
 			if(wireframeMode){
 				$$('wireframe').className = 'btn btn-primary';
 			}
@@ -231,12 +231,12 @@
 					console.log(geometry.uvs.length);
 					if (geometry.uvs.length > 0) {
 						paramMesh = genParamMesh(geometry, material);	
-						document.getElementById("2dview").disabled = false;
-						document.getElementById("texture").disabled = false;
+						$$("2dview").disabled = false;
+						$$("texture").disabled = false;
 					}
 					else{
-						document.getElementById("2dview").disabled = true;
-						document.getElementById("texture").disabled = true;	
+						$$("2dview").disabled = true;
+						$$("texture").disabled = true;	
 					}
 					//paramMesh = genParamMesh(geometry, material);
 					geometry.uvsNeedUpdate = false;
