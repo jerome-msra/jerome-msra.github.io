@@ -1,425 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Jerome's WebGL Viewer</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<style>
-		*{
-			border: none;
-		}
-		body {
-			font-family: Monospace;
-			background-color: #000;
-			color: #fff;
-			margin: 0;
-			overflow: hidden;				
-		}
-		.btn { 
-			color: #333;
-			background-color: #fff;
-			border-color: #ccc;
 
-			font-weight: bold; 
-			cursor: pointer;
-			margin: 0 auto; 
-			width: 100%;
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-			display: inline-block;
-			padding: 6px 12px;
-			margin-bottom: 0;
-			font-size: 14px;
-			font-weight: 400;
-			line-height: 1.42857143;
-			text-align: center;
-			white-space: nowrap;
-			vertical-align: middle;
-			touch-action: manipulation;
-			cursor: pointer;
-			-webkit-user-select: none;
-			border: 1px solid #ccc;
-			border-right: none;
-			border-radius: 1px;
-			z-index: 10;
-		}
-		.btn-primary {
-			color: #fff;
-			background-color: #337ab7;
-			border-color: #2e6da4;
-		}
-		.control {
-			display: flex;
-			display: -webkit-box;
-			display: -moz-flex;
-			display: -ms-flexbox;
-			display: -webkit-flex;
-			text-align: justify;
-			justify-content: space-between;
-			width: 100%; 
-			position:absolute; 
-			bottom:0;				 
-			text-align:center;
-			margin: 0 auto;
-		}
-		.control:first-child{
-			border-left: none;
-		}
-	</style>
+    <title>Jerome's Homepage</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
-<body style="width:100%">		
-	<div class="control">
-		<button type="button" onclick="handleClick('s')" id="smooth" class="btn btn-primary">Smooth</button>
-		<button type="button" onclick="handleClick('f')" id="flat" class="btn">Flat</button>
-		<button type="button" onclick="handleClick('w')" id="wireframe" class="btn">Wireframe</button>
-		<button type="button" onclick="handleClick('g')" id="3dview" class="btn btn-primary">3D View</button>
-		<button type="button" onclick="handleClick('p')" id="2dview" class="btn">2D View</button>
-		<button type="button" onclick="handleClick('t')" id="texture" class="btn">Texture</button>
-	</div>
-	<script>
-		var smoothMode = true;
-		var flatMode = false;
-		var wireframeMode = false;
-		var textureMode = false;
-		var d3Mode = true;
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-		function $$(id){
-			return document.getElementById(id);
-		}
-		function handleClick(code){
-			onKeyDown({keyCode:code.charCodeAt(0)});
-		}
-		function updateControl(){
-			if(d3Mode){
-				$$('3dview').className = 'btn btn-primary';
-				$$('2dview').className = 'btn';
-			}
-			else{
-				$$('2dview').className = 'btn btn-primary';
-				$$('3dview').className = 'btn';	
-			}
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="light">Jerome</span> Jiang
+                </a>
+            </div>
 
-			if(smoothMode){
-				$$('smooth').className = 'btn btn-primary';
-				$$('flat').className = 'btn';
-				$$('wireframe').className = 'btn';
-			}
-			else if (flatMode) {
-				$$('smooth').className = 'btn';	
-				$$('flat').className = 'btn btn-primary';
-				$$('wireframe').className = 'btn';	
-			}
-			else if(wireframeMode) {
-				$$('wireframe').className = 'btn btn-primary';
-				$$('flat').className = 'btn';
-				$$('smooth').className = 'btn';	
-			}
-			
-			if(textureMode){
-				$$('texture').className = 'btn btn-primary';
-			}
-			else{
-				$$('texture').className = 'btn';	
-			}
-		}
-	</script>
-	<script src="js/three.min.js"></script>		
-	<script src="js/OrbitControls.js"></script>		
-	<script src="js/PLYLoader.js"></script>		
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#experience">Experience</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-	<script>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Jerome Jiang</h1>
+                        <p class="intro-text">Software Engineer @ Google
+                            <br>Photographer<br>Traveler<br>Hiker</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-		var container;
-		var camera, camera3d, camera2d, scene, renderer;
-		var controls, controls3d, controls2d;
+    <!-- About Header -->
+    <header id="about" class="about">
+        <div class="about-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>About Jerome</h2>
+                        <p>Jerome is a software engineer in Chrome Platform in Google. He is working on <a href="https://www.webmproject.org/">WebM Project</a>. He is also optimizing performance of WebM Codecs in <a href="https://webrtc.org/">WebRTC</a>.</p>
+                        <p>Before joining Google, he got Master's degree in Stony Brook University, advised by <a href="http://www3.cs.stonybrook.edu/~gu/">Prof. Xianfeng Gu</a>. His research interests are Computer Graphics, Computation Geometry and Computer Vision. Check out his <a href="#projects">research projects</a>.</p>
+                        <p>A few years earlier, he was in School for Gifted Young in University of Science of Technology of China.</p>
+                        <p>Jerome is an amateur photographer. Check out his photos on <a href="https://www.flickr.com/photos/jjustc">Flickr</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-		var texture;
+    <!-- About Header -->
+    <header id="experience" class="experience">
+        <div class="about-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Experience</h2>
+                        <h3>Intern</h3>
+                        <p><b>Futurewei Technologies Inc., Santa Clara</b><br>2016.7-2016.9<br>
+                        Explore adaptive tessellation algorithms used in Virtual Reality.</p>
+                        <p><b>Microsoft Research Asia, Beijing</b><br>2012.7-2013.5<br>
+                        Use Machine Learning to reconstruct high accuracy 3D models.</p>
+                        <h3>Academic & Research</h3>
+                        <p><b>Dept. of Computer Science, Stony Brook University, Stony Brook</b>
+                        <br>Research Assistant, Teaching Assistant<br>
+                        2013.8-2014.5, 2014.8-2016.5</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-		var mesh, paramMesh;
+    <!-- Project Header -->
+    <header id="projects" class="project">
+        <div class="project-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Projects</h2>
+                        <h3>Hyperbolic Harmonic Mapping for Surface Registration</h3>
+                        <p class="project-text">Automatic computation of surface correspondence via harmonic map is an active research field in computer vision, computer graphics and computational geometry. Although numerous studies have been devoted to harmonic map research, limited progress has been made to compute a diffeomorphic harmonic map on general topology surfaces with landmark constraints.</p>
+                        <p class="project-text">This work conquers this problem by changing the Riemannian metric on the target surface to a hyperbolic metric so that the harmonic mapping is guaranteed to be a diffeomorphism under landmark constraints. The computational algorithms are based on Ricci flow and nonlinear heat diffusion methods. The approach is general and robust. We employ our algorithm to study the constrained surface registration problem which applies to both computer vision and medical imaging applications. Experimental results demonstrate that, by changing the Riemannian metric, the registrations are always diffeomorphic and achieve relatively high performance when evaluated with some popular surface registration evaluation standards.</p>
+                        <p class="project-text"><i><a href="http://ieeexplore.ieee.org/abstract/document/7469384/">Hyperbolic Harmonic Mapping for Surface Registration</a></i> on IEEE TPAMI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-		init();
-		animate();
+    <!-- Project Header -->
+    <header id="projects" class="project2">
+        <div class="project2-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Projects</h2>
+                        <h3>Strebel Differential for Quad and Hex Remeshing</h3>
+                        <p class="project2-text">Isogeometric Analysis is a very hot topic in computational geometry most recently which connects the discrete mesh with the spline used in machinery industry. However, converting from the high genus triangle mesh to G-2 Spline remain unsolved since discrete meshes only satisfy C-0 continuity. Strebel Differential is a powerful mathematical tool that separate the high genus surfaces into several cylinders and guarantees the global consistency. Strebel Differential is a holomorphic form on Riemannian manifold which gives canonical parameterization while preserving angles(i.e. conformal). Therefore, Strebel Differential induces a quad tessellation naturally. With this quad mesh, G-2 spline could be easily generated and thus benefit the machinery industry.</p>
 
+                        <p class="project2-text">The pictures shows the rendered results of the generated quad mesh. The bottom figures show the holomorphic 1-form and its zero points structure. The number of singular points are restrictly controlled by the topology of the surface which is guaranteed by the mathematics theory.</p>
 
-		function init() {
+                        <p class="project2-text"><i><a href="http://www.sciencedirect.com/science/article/pii/S0045782516312762">Quadrilateral and hexahedral mesh generation based on surface foliation theory</a></i> on Computer Methods in Applied Mechanics and Engineering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-			container = document.createElement( 'div' );
-			document.body.appendChild( container );
+    <!-- Download Section -->
+<!--     <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Projects</h2>
+                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
 
-			camera3d = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.001, 200 );
-			camera3d.position.z = 5;
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Jerome</h2>
+                <p>Feel free to email me if you have any questions, or to just say hello!</p>
+                <p><a href="mailto:jjlzyz000@gmail.com">jjlzyz000@gmail.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/jjustc" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/jerome-msra" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/jeromesbu" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-			camera2d = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-			camera2d.position.z = 2;
+    <!-- Map Section -->
+    <!-- <div id="map"></div> -->
 
-			controls3d = new THREE.OrbitControls( camera3d );
-			controls2d = new THREE.OrbitControls( camera2d );
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Proudly Powered by <a href="http://getbootstrap.com/">Bootstrap</a></p>
+        </div>
+    </footer>
 
-			camera = camera3d;
-			controls = controls3d;
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
 
-			scene = new THREE.Scene();
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-			var ambient = new THREE.AmbientLight( 0xa9a9a9 );
-			scene.add( ambient );
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-			var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-			directionalLight.position.set( 0, 0, 100 );
-			scene.add( directionalLight );
-			var directionalLight2 = new THREE.DirectionalLight( 0xbad1e5 );
-			directionalLight2.position.set( 0, 0, -500 );
-			scene.add( directionalLight2 );
-			var pointLight = new THREE.PointLight( 0xbad1e5 );
-			pointLight.position.set( 0, 100, 100 );
-				// scene.add( pointLight );
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
-				// var lights = [];
-				// lights[0] = new THREE.PointLight( 0xffffff, 1, 0 );
-				// lights[1] = new THREE.PointLight( 0xffffff, 1, 0 );
-				// lights[2] = new THREE.PointLight( 0xffffff, 1, 0 );
-				
-				// lights[0].position.set( 0, 0, 200 );
-				// lights[1].position.set( 100, 200, 100 );
-				// lights[2].position.set( -100, -200, -100 );
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
 
-				// scene.add( lights[0] );
-				// scene.add( lights[1] );
-				// scene.add( lights[2] );
+</body>
 
-
-				// texture
-
-				var manager = new THREE.LoadingManager();
-				manager.onProgress = function ( item, loaded, total ) {
-
-					console.log( item, loaded, total );
-
-				};				
-
-				var onProgress = function ( xhr ) {
-					if ( xhr.lengthComputable ) {
-						var percentComplete = xhr.loaded / xhr.total * 100;
-						console.log( Math.round(percentComplete, 2) + '% downloaded' );
-					}
-				};
-
-				var onError = function ( xhr ) {
-				};
-
-				texture = THREE.ImageUtils.loadTexture( "checker.jpg" );
-				var material = new THREE.MeshPhongMaterial( {
-					// color: 0x565c5f,
-					color: 0x898c8e,					
-					specular: 0x222222,
-					shininess: 40,
-					side: THREE.DoubleSide,										
-					normalScale: new THREE.Vector2( 0.5, 0.8 ),
-					wireframe: false,
-					vertexColors: THREE.VertexColors,				
-					shading: THREE.SmoothShading,
-					reflectivity: 1,
-					refractionRatio: 0.98,
-					skinning: false,		
-				} );
-
-				
-				var loader = new THREE.PLYLoader( manager );
-				loader.load( 'mesh/sophie.ply', function ( geometry ) {
-
-					console.log(geometry.uvs.length);
-					if (geometry.uvs.length > 0) {
-						paramMesh = genParamMesh(geometry, material);	
-						$$("2dview").disabled = false;
-						$$("texture").disabled = false;
-					}
-					else{
-						$$("2dview").disabled = true;
-						$$("texture").disabled = true;	
-					}
-					//paramMesh = genParamMesh(geometry, material);
-					geometry.uvsNeedUpdate = false;
-					geometry.computeFaceNormals();
-					geometry.computeVertexNormals();
-					geometry.normalize();
-
-					mesh = new THREE.Mesh( geometry, material );
-					
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add(mesh);	
-					
-				}, onProgress, onError );
-
-				//
-				
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setClearColor( 0xffffff, 1 );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				
-				container.appendChild( renderer.domElement );
-				
-
-				window.addEventListener( 'resize', onWindowResize, false );
-				window.addEventListener('keydown', onKeyDown, false);
-
-			}
-
-			function genParamMesh(geometry, material){
-				var paramGeometry = new THREE.Geometry();
-				paramGeometry.faces = geometry.faces.slice();
-				paramGeometry.faceVertexUvs = geometry.faceVertexUvs.slice();
-				paramGeometry.colors = geometry.colors.slice();
-				paramGeometry.uvs = geometry.uvs.slice();
-
-				for(var i=0; i<geometry.uvs.length; ++i){
-					uv2 = geometry.uvs[i];
-					paramGeometry.vertices.push(new THREE.Vector3(uv2.x,uv2.y,0));
-				}
-				paramGeometry.computeBoundingSphere();
-				paramGeometry.computeFaceNormals();
-				paramGeometry.computeVertexNormals();
-				var center = paramGeometry.boundingSphere.center;
-				paramGeometry.translate( -center.x, -center.y, -center.z );
-				paramGeometry.rotateZ(Math.PI);
-
-				var paramMesh = new THREE.Mesh(paramGeometry, material);
-				return paramMesh;
-			}
-
-			function onKeyDown(e) {
-				var key = String.fromCharCode(e.keyCode);
-				if(key === 'w' || key === 'W' ) {// wireframe
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){
-							// child.material.wireframe = !child.material.wireframe;
-							// wireframeMode = child.material.wireframe;					
-							// if(child.material.wireframe){
-							// 	child.material.vertexColors = THREE.FaceColors;
-							// 	child.material.shading = THREE.SmoothShading
-							// 	smoothMode = false;
-							// 	flatMode = false;
-							// 	wireframeMode = true;
-							// }
-							// else{
-							// 	child.material.vertexColors = THREE.VertexColors;
-							// }
-							child.material.wireframe = true;
-							child.material.vertexColors = THREE.VertexColors;
-							smoothMode = false;
-							flatMode = false;
-							wireframeMode = true;
-							child.material.needsUpdate = true;
-						}
-					}
-				}
-				if(key === 's' || key === 'S' ) {// smooth shading
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){				
-							child.material.wireframe = false;
-							child.material.shading = THREE.SmoothShading;	
-							smoothMode = true;
-							flatMode = false;		
-							wireframeMode = false;				
-							child.material.needsUpdate = true;						
-						}
-					}
-				}
-				if(key === 'f' || key === 'F' ) {// flat shading
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){							
-							child.material.shading = THREE.FlatShading;
-							child.material.wireframe = false;
-							flatMode = true;
-							smoothMode = false;
-							wireframeMode = false;
-							child.material.needsUpdate = true;
-							
-						}
-					}
-				}
-				if(key === 't' || key === 'T' ) {// show texture
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){
-							if(child.material.map){
-								child.material.map = undefined;
-							}
-							else{
-								child.material.map = texture;
-							}
-							textureMode = !!child.material.map;
-							child.material.needsUpdate = true;
-						}
-					}
-				}		
-				if(key === 'g' || key === 'G' ) {// 3D View
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){
-							d3Mode = true;
-							scene.children[i] = mesh;
-							camera = camera3d;
-							controls = controls3d;
-						}
-					}
-				}
-				if(key === 'p' || key === 'P' ) {// 2D View
-					for(var i=0; i< scene.children.length; ++i){
-						var child = scene.children[i];
-						if(child instanceof THREE.Mesh){
-							d3Mode = false;
-							scene.children[i] = paramMesh;
-							camera = camera2d;
-							controls = controls2d;
-							// child = paramMesh;
-							// child.geometry.vertices = uvs;	
-							// child.geometry.computeFaceNormals();
-  					// 		child.geometry.computeVertexNormals();							
-							// child.geometry.verticesNeedUpdate = true;
-							// child.geometry.normalsNeedUpdate = true;
-							// child.geometry.dynamic = true;
-							// child.geometry._bufferGeometry.attributes.position.needsUpdate = true;
-							// child.geometry._bufferGeometry.attributes.normal.needsUpdate = true;
-							// camera.position.z = 2;
-							// camera.updateProjectionMatrix();
-						}
-					}
-				}
-
-				updateControl();
-			}
-
-			function onWindowResize() {				
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();				
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}			
-
-			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-				controls.update();
-				render();
-
-			}
-
-			function render() {				
-
-				renderer.render( scene, camera );
-
-			}
-
-		</script>
-
-	</body>
-	</html>
+</html>
