@@ -27,7 +27,7 @@ h6 {
   letter-spacing: 1px;
 }
 p {
-  margin: 0 0 25px;
+  margin: 0 0 35px;
   font-size: 18px;
   line-height: 1.5;
 }
@@ -139,6 +139,30 @@ a:focus {
 }
 
 .experience .experience-body .experience-text {
+  font-size: 17px;
+}
+
+.publication {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  text-align: left;
+  color: black;
+  background: url(../img/pub-bg-copy.jpg) no-repeat bottom center scroll;
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.publication .publication-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.publication .publication-body .publication-text {
   font-size: 17px;
 }
 
@@ -330,7 +354,7 @@ a:focus {
   width: 100%;
   padding: 50px 0;
   color: white;
-  background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
+  background: url(../img/exp-cv-bg.jpg) no-repeat center center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;
